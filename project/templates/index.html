@@ -1,0 +1,18 @@
+<h1>Hierarchical Data and You</h1>
+
+<!-- {{tree_data}}  -->
+<!-- {% for tree in tree_data %} {{tree}} {% endfor %}  -->
+<!-- Used https://django-mptt.readthedocs.io/en/latest/tutorial.html to display data correctly -->
+
+{% load mptt_tags %}
+<ul>
+  {% recursetree tree_data %}
+  <li>
+    {{ node.name }} {% if not node.is_leaf_node %}
+    <ul class="children">
+      {{ children }}
+    </ul>
+    {% endif %}
+  </li>
+  {% endrecursetree %}
+</ul>
